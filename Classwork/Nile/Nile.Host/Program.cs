@@ -14,44 +14,90 @@ namespace Nile.Host
         // A single line comment
         static void Main( string[] args )
         {
-            int hours = 5;
-            hours = 10;
+            bool quit = false;
+            do
+            {
+                char choice = GetInput();
+                switch (choice)
+                {
+                    case 'a':
+                    case 'A':
+                        AddProduct();
+                        break;
 
-            //+ - * / %
-            //hours = (4 + 5) * 7.25 / 4;            
-            //hours = Math.Min(hours, 56);
+                    case 'b':
+                    case 'B':
+                        ListProducts();
+                        break;
 
-            string name = "John";
-
-            //Concat
-            name = name + " Williams";
-
-            //Copy
-            name = "Hello";
-
-            bool areEqual = name == "Hello";
-            bool areNotEqual = name != "Hello";
-
-            //Verbatim string - no escape sequences
-            string path = @"C:\Temp\test.txt";
-
-            //Option 1
-            string names = "John" + " William" + " Murphy" + " Charles" + " Henry";
-
-            //Option 2
-            StringBuilder builder = new StringBuilder();
-            builder.Append("John");
-            builder.Append(" William");
-            string names2 = builder.ToString();
-
-            //Option 3
-            string names3 = String.Concat("John", " William", " Murphy", " Charles", " Henry");
-
-            //String formatting
-            //John worked 10 hours
-            string format1 = name + " worked " + hours.ToString() + " hours";
-
-            string format2 = String.Format("{0} worked for {1} hours", name, hours);
+                    case 'c':
+                    case 'C':
+                        quit = true;
+                        break;
+                };
+            } while(!quit);
         }
+
+        private static void ListProducts()
+        {
+            Console.Write("Enter product name: ");
+            string name = Console.ReadLine().Trim();
+
+            //ensure not empty
+
+            Console.Write("Enter price (>0): ");
+            string price = Console.ReadLine().Trim();
+
+            Console.Write("Enter optional description: ");
+            productDescription = Console.ReadLine().Trim();
+
+            Console.Write("Is it discontinued (Y?N: ");
+            string discontinued = Console.ReadLine().Trim();
+        }
+
+        private static void AddProduct()
+        {
+            throw new NotImplementedException();
+        }
+
+        static char GetInput()
+        {
+            while(true)
+            {
+                Console.WriteLine("Main Menu");
+                Console.WriteLine("".PadLeft(10, '-'));
+                Console.WriteLine("A) Add product");
+                Console.WriteLine("B) List product");
+                Console.WriteLine("C) Quit product");
+            
+                string input = Console.ReadLine().Trim();
+
+                if (input != String.Empty)  //input != "" and input.Length == 0 both work, but .Length needs to check for null
+                {
+                    //String Comparion
+                    //if (String.Compare(input, "A", true) == 0) //case insensitive comparison, returns an int (0 is equal, 1 is not equal)
+                    //    return 'A';
+
+                    //Char comparison
+                    char letter = Char.ToUpper(input[0]);
+                    if (letter == 'A')
+                        return 'A';
+                    else if (letter == 'b')
+                        return 'B';
+                    else if (letter == 'c')
+                        return 'C';
+                };
+                //Error
+                Console.WriteLine("Please choose a valid menu option");
+
+            }
+
+        }
+
+        //Product
+        static string productName;
+        static decimal productPrice;
+        static string productDescription;
+        static bool productDiscontinued;
     }
 }
