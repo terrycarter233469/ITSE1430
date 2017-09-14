@@ -1,0 +1,72 @@
+CTS-
+Common Type System
+
+One base type from which all other types derive.
+Object is the base type. 
+
+In .Net everything is an object. 
+
+.To String() is an inherited function of Object that every type has.
+.Equals(), any object can be compared to any other object. == != are converted to this under the hood 4 == 5 becomes 4.Equals(5);
+
+Every type is either a reference or a value.
+
+Value Type- Primitives (int, bool, etc)
+			enumerations
+			struct
+			DateTime
+			TimeSpan
+			
+Reference Type- Classes
+				Strings
+				
+
+				
+Reference types store a reference to the value in the stack, while value types store the value in the stack directly.
+Value types are designed to hold entire data, pieces of it does not make sense.
+Reference types are designed to hold data that can be split up and still make sense.
+
+Value types are designed to hold small amounts of data, 64 bits max usually.
+Value types are always defaulted to 0.
+reference types are defaulted as null, and must always handle null.
+
+
+//value type
+omt value1 = 10;
+
+//reference type
+Program program = new Program();
+
+value types compare using value semantics. It looks at the actual value and compare them.
+
+reference semantics compare the reference value (pointer). They must both point to the same place.
+Unlike, C++ you cannot overload the == operator.
+String, however, does follow value semantics.
+
+Value types are almost always immutable.
+
+ static string ReadString(string errorMessage, bool allowEmpty)
+        {
+			//if(errorMessage == null)
+				//errorMessage = "Enter a valid string";
+				//else
+				//	errorMessage = errorMesage.Trim();
+				
+			//null coalesce
+			errorMessage = errorMessage ?? "Enter a valid string"; //looks at the first value. if it is not null it uses that value, if it is it moves onto the next value.
+			
+			//Null conditional
+			errorMessage = errorMessage ?.Trim();
+				
+            do
+            {
+                string input = Console.ReadLine();
+				
+				if(String.IsNullOrEmpty(input) && allowEmpty)
+					return "";
+				else if (!String.IsNullOrEmpty(input))
+					return input;
+
+                Console.WriteLine(errorMessage);
+            } while (true);
+        }
