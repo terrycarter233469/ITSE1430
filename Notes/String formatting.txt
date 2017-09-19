@@ -18,6 +18,12 @@ string names3 = String.Concat("John", " William", "Murphy", " Charles", " Henry"
 
 //String formatting
 //John worked 10 hours
+
+//option 1
 string format1 = name + " worked " + hours.ToString() + " hours";
 
-string fromat2 = String.Format("{0} worked for {1} hours", name, hours);	//format string
+//option 2
+string fromat2 = String.Format("{0} worked for {1} hours", name, hours);	
+
+//option 3
+string fromat3 = $"{name} worked for {hours} hours";	//$ makes it an interpetive string, works with any expression. compiler safe.

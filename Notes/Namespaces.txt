@@ -1,0 +1,23 @@
+Assembly is your project converted to binary code. Deployment.
+
+namespace- Scoping identifier that puts a scope around a set of identifiers. Namespace prevents naming collisions.
+Example:
+	product1.utility; where product 1 is the namespace and utility is an object.
+	product2.utility;
+	
+Namespaces are pascal case. Company.Product[.subname] (. is allowed in the name) and the subname is optional.
+
+
+Nile
+	Host
+		program
+		
+To use namespace - Using System;
+					Using Nile;
+		
+		
+		
+namespace name- namespace declaration
+{
+
+}
