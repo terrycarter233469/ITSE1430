@@ -1,0 +1,11 @@
+Properties:
+ viewed as fields by everyone and must be fast as a result.
+ get- no side effects. expected to be read over and over again and return the same value everytime.
+ 
+ 
+ 
+ Method:
+ get- side effect.
+ not data.
+ Parameters are needed.
+ allocate memory.

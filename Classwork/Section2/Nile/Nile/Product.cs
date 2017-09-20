@@ -6,20 +6,64 @@ using System.Threading.Tasks;
 
 namespace Nile
 {
+
     /// <summary>Represents a product.</summary>
     /// <remarks>This will represent a product with other stuff.</remarks>
     public class Product
     {
+       // public readonly Product None = new Product();   //reference type, creates an empty object when the instance is created. the field is only readonly, 
+                                                        //they can still call all of it's methods and properties. 
+        private string _name;
+        private string _description;
+
+        private readonly double _someValueICannotChange = 10; //readonly works only on fields and effectively makes it a constant with some differences. 
+                                                              //readonly means the value is fixed at the point the instance is created.                                                             
+
         /// <summary>Gets or sets the name.</summary>
-        public string Name;
+        /// <value>Never returns null.</value>
+        public string Name  //property. A mixture of a field and a method
+        {
+            get //must always return a value
+            {
+                return _name ?? ""; //prevents a null return
+            }
+
+            set //value is a keyword in a set
+            {
+                _name = value?.Trim();
+            }
+        }
 
         /// <summary>Gets or sets the description.</summary>
-        public string Description;
+        public string Description
+        {
+            get{return _description ?? "";}
+            set{_description = value?.Trim();}
+        }
 
         /// <summary>Gets or sets the price.</summary>
-        public decimal Price;
+        public decimal Price { get; set; } = 0; //shorthand auto property. will auto generate _price. = 0 will initialize the _price field.
 
         /// <summary>Determines if discontinued.</summary>
-        public bool IsDiscontinued;
+        public bool IsDiscontinued { get; set; }
+        //{
+        //    get { return _isDiscontinued; }
+        //    set { _isDiscontinued = value; }
+        //}
+
+        public const decimal DiscontinuedDiscoutRate = 0.10M;  //only time it makes sense to have a public field, constant
+        /// <summary>Gets the discounted price, if applicable/// </summary>
+        public decimal DiscountedPrice
+        {
+            get 
+            {
+                if (IsDiscontinued)
+                    return Price * DiscontinuedDiscoutRate;
+                return Price;
+            }
+        }
+
+        //public int ICanOnlySetIt { get; private set; } //only one of the get or set can be changed and must always be more restrictive.
+        //public int ICanOnlySetIt2 { get;} //same as above
     }
 }
