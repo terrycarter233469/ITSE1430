@@ -1,0 +1,11 @@
+The mainform is a child of the windows desktop. Every form should have a parent form.
+Modal vs Modeless:
+
+Modeless windows are when a user can use multiple windows freely.
+Primarily used for auxilary services that the user may or may not need at any given time.
+
+Modal windows block users from accessing the parent window until the user finishes with the window.
+
+ShowDialog() is modal;
+Show() is modeless;
+
