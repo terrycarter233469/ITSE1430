@@ -12,7 +12,7 @@ namespace Nile.Windows
 
         private void button1_Click( object sender, EventArgs e )
         {
-            var child = new ProductDetailForm();
+            var child = new ProductDetailForm("Product Details");
             if (child.ShowDialog(this) != DialogResult.OK)
                 return;
 

@@ -11,6 +11,11 @@ namespace Nile
     /// <remarks>This will represent a product with other stuff.</remarks>
     public class Product
     {
+        public Product()
+        {
+            //Cross field initialization
+        }
+
        // public readonly Product None = new Product();   //reference type, creates an empty object when the instance is created. the field is only readonly, 
                                                         //they can still call all of it's methods and properties. 
         private string _name;
@@ -63,7 +68,24 @@ namespace Nile
             }
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+        public virtual string Validate()        //virtual and abstract both allow overriding.
+                                                //abstract provides no implementation and makes the class abstract that cannot have an instance created.
+        {
+            //Name cannotg be empty
+            if (String.IsNullOrEmpty(Name))
+                return "Name cannot be empty.";
+
+            //Price >= 0
+            if (Price < 0)
+                return "Price must be >= 0.";
+            return null;
+        }
         //public int ICanOnlySetIt { get; private set; } //only one of the get or set can be changed and must always be more restrictive.
         //public int ICanOnlySetIt2 { get;} //same as above
+
     }
 }

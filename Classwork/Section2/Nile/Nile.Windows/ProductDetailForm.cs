@@ -12,9 +12,34 @@ namespace Nile.Windows
 {
     public partial class ProductDetailForm : Form
     {
-        public ProductDetailForm()
+        #region Construction
+        public ProductDetailForm() //: base() calls the constructor of the type inherited from
         {
             InitializeComponent();
+        }
+
+        public ProductDetailForm(string title) : this()
+        {
+            Text = title;
+        }
+
+        public ProductDetailForm( string title, Product product ) : this(title)
+        {
+            Product = product;
+        }
+        #endregion
+
+        protected override void OnLoad( EventArgs e )
+        {
+            base.OnLoad(e);
+
+            if(Product != null)
+            {
+                _txtName.Text = Product.Name;
+                _txtDescription.Text = Product.Description;
+                _txtPrice.Text = Product.Price.ToString();
+                _chkDiscontinued.Checked = Product.IsDiscontinued;
+            }
         }
 
         private void textBox2_TextChanged( object sender, EventArgs e )
@@ -23,6 +48,10 @@ namespace Nile.Windows
         }
 
         public Product Product { get; set; }
+        private void showError(string message, string title)
+        {
+            MessageBox.Show(this, message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
         private void OnSave( object sender, EventArgs e )
         {
             var product = new Product();
@@ -32,6 +61,14 @@ namespace Nile.Windows
             product.IsDiscontinued = _chkDiscontinued.Checked;
 
             //TODO: add validation
+            var error = product.Validate();
+            if(!String.IsNullOrEmpty(error))
+            {
+                //Show the error
+                showError(error, "Validation Error");
+                return;
+           
+            }
 
             Product = product;
             this.DialogResult = DialogResult.OK;
