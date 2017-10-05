@@ -1,0 +1,24 @@
+lifetime of a form
+
+constructor-no events are created or sent and windows has not made anything. You cannot inject code here assuming anything has been initialized
+
+load- event only called once. actual initialization and windows allocates system resources to actually make the form. first render.
+
+Form Closing- occurs before the user interface actually goes away, still on screen. form is given opportunity to stop the closing (CancelEventArgs) 
+			- if not canceled, the form goes away.
+
+Form Closed- post close, cleanup opportunity for resources that are not normally cleaned up by the framework. Rarely need to use this event.
+
+
+Windowsforms events are all backed by methods named On(eventname). Ex: OnLoad, OnFormClosing, OnFormClosed, etc. All the methods are protected virtual.
+
+override Event 					Vs 					Override method
+not derived		(less control)						all other cases(lots of control)
+extended controls,
+but not changing
+
+
+The designer always uses the eventhandler instead of methods.
+
+The constructors of the forms and controls are always running since the designer has to call the constructor to create an instance of an object to even show the designer
+to check if you are in the designmode, so you can do runtime only connections and events, if(designMode) will check.

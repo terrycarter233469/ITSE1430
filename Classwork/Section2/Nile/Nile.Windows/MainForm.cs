@@ -65,5 +65,10 @@ namespace Nile.Windows
         }
 
         private Product _product;
+
+        private void MainForm_Load( object sender, EventArgs e )
+        {
+
+        }
     }
 }
