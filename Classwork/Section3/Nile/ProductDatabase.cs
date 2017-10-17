@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,27 +12,29 @@ namespace Nile
     {
         public ProductDatabase()
         {
-            var product = new Product();
-            product.Name = "Galaxy S7";
-            product.Price = 650;
-            Add(product);
 
-            product = new Product();
-            product.Name = "Samsung Note 7";
-            product.Price = 150;
-            product.IsDiscontinued = true;
-            Add(product);
+            //_products.Add(new Product(){ID = 1, Name = "Galaxy S7", Price = 650});
+            //_products.Add(new Product(){ID = 2, Name = "Samsung Note 7", Price = 150, IsDiscontinued = true});
+            //_products.Add(new Product(){ID = 3, Name = "Windows Phone",Price = 100});
+            //_products.Add(new Product(){ID = 4, Name = "iPhone X", Price = 1900, IsDiscontinued = true});
 
-           product = new Product();
-           product.Name = "Windows Phone";
-           product.Price = 100;
-           Add(product);
+            //Collection initializer syntax with array
+            _products.AddRange(new [] { //passes in the elements of the array into a list
+                new Product() { ID = 1, Name = "Galaxy S7", Price = 650 },
+                new Product() { ID = 2, Name = "Samsung Note 7", Price = 150, IsDiscontinued = true },
+                new Product() { ID = 3, Name = "Windows Phone", Price = 100 },
+                new Product() { ID = 4, Name = "iPhone X", Price = 1900, IsDiscontinued = true },
+            });
 
-            product = new Product();
-           product.Name = "iPhone X";
-           product.Price = 1900;
-           product.IsDiscontinued = true;
-           Add(product);
+            ////Collection initializer Syntax, automatically creates a list and adds all the objects to it
+            //_products = new List<Product>() {
+            //    new Product() { ID = 1, Name = "Galaxy S7", Price = 650 },
+            //    new Product() { ID = 2, Name = "Samsung Note 7", Price = 150, IsDiscontinued = true },
+            //    new Product() { ID = 3, Name = "Windows Phone", Price = 100 },
+            //    new Product() { ID = 4, Name = "iPhone X", Price = 1900, IsDiscontinued = true },
+            //};
+
+            _nextId = _products.Count + 1;
         }
 
         /// <summary>Adds a product.</summary>
@@ -42,9 +45,13 @@ namespace Nile
             //validate
             if (product == null)
                 return null;
-            product.Validate();
-            if (!String.IsNullOrEmpty(product.Validate()))
+
+            //using invalidatable object
+            if (!ObjectValidator.TryValidate(product, out var errors))
                 return null;
+
+            //if (!String.IsNullOrEmpty(product.Validate()))
+            //    return null;
 
             //emulate database by storing copy
             var newProduct = CopyProduct(product);
@@ -108,8 +115,12 @@ namespace Nile
             //validate
             if (product == null)
                 return null;
-            if (!String.IsNullOrEmpty(product.Validate()))
+            //Using IValidatableObject
+            if (!ObjectValidator.TryValidate(product, out var errors))
                 return null;
+
+            //if (!String.IsNullOrEmpty(product.Validate()))
+            //    return null;
 
 
             //get existing product

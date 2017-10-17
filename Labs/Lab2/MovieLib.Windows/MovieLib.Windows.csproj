@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{66d5f351-20ec-4563-b5dc-848f747e0df8}</ProjectGuid>
+    <ProjectGuid>{66D5F351-20EC-4563-B5DC-848F747E0DF8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>MovieLib.Windows</RootNamespace>
     <AssemblyName>MovieLib.Windows</AssemblyName>
@@ -47,8 +47,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>
-    </StartupObject>
+    <StartupObject>MovieLib.Windows.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

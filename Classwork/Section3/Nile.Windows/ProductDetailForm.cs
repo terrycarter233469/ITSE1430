@@ -66,22 +66,39 @@ namespace Nile.Windows
                 return;
             };
 
-            var product = new Product();
-            product.ID = Product?.ID ?? 0;
-            product.Name = _txtName.Text;
-            product.Description = _txtDescription.Text;
+            //var product = new Product();
+            //product.ID = Product?.ID ?? 0;
+            //product.Name = _txtName.Text;
+            //product.Description = _txtDescription.Text;
 
-            product.Price = GetPrice(_txtPrice);
-            product.IsDiscontinued = _chkDiscontinued.Checked;
+            //product.Price = GetPrice(_txtPrice);
+            //product.IsDiscontinued = _chkDiscontinued.Checked;
+
+            //Object initializer syntax
+            //has to be settable and cannot reference properties/fields on the left side of an equals, do not have to initialize all of the fields/properties
+            var product = new Product() {
+                ID = Product?.ID ?? 0,
+                Name = _txtName.Text,
+                Description = _txtDescription.Text,
+                Price = GetPrice(_txtPrice),
+                IsDiscontinued = _chkDiscontinued.Checked,
+            };
 
             //Add validation
-            var error = product.Validate();
-            if (!String.IsNullOrEmpty(error))
+            //var error = product.Validate();
+            //if (!String.IsNullOrEmpty(error))
+            //{
+            //    //Show the error
+            //    ShowError(error, "Validation Error");
+            //    return;
+            //};
+
+            if (!ObjectValidator.TryValidate(product, out var errors))
             {
                 //Show the error
-                ShowError(error, "Validation Error");
+                ShowError("Not Valid", "Validation Error");
                 return;
-            };
+            }
 
             Product = product;
             this.DialogResult = DialogResult.OK;
