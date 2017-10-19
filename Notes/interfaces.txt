@@ -1,0 +1,21 @@
+Interfaces -> also known as a contract
+
+interfaces do things but provide no implementation details; providing functionality, no implementation details. c++ every other language but c++ has it
+
+Members- do not provide implementation on any member and cannot set the access modifier, all members are always public.
+
+interface Enumerate
+{
+	bool GetNext();
+	T Current{get};
+}
+
+interfaces cannot have fields or constructors, as they do not use up space.
+interfaces can only have methods, properties, and events.
+
+ienumerable<t>- read only
+lists/collections- read/writable
+arrays- read/replaceable
+
+start with ienumerable unless ienumerable cannot work.
+arrays are the last type one should use, but if you know the exact amount of elements then array is preferred over a list.
