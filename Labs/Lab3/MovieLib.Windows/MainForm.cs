@@ -135,6 +135,8 @@ namespace MovieLib.Windows
                    EditMovie(movie);
             }
 
+            e.SuppressKeyPress = true;
+
         }
 
         private IMovieDatabase _database = new MemoryMovieDatabase();
