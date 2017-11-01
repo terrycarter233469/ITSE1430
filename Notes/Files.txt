@@ -1,0 +1,28 @@
+System.IO
+
+File- Cannot create an instance. 
+
+Directory- Cannot create an instance.
+
+FileInfo- File, contains info about a file. May or may not exist.
+
+DirectoryInfo- Directory, contains info about a directory. May or may not exist.
+
+In .net generally do not work with a file directly.
+
+Stream- does not care where the output is from. A series/stream of bytes. an abstract class. only reads and writes as bytes
+
+StreamReader- text, designed to work with strings. will handle conversion to bytes for the stream.
+StreamWriter
+
+BinaryReader- binary
+BinaryWriter
+
+IDisposable- interface to identify a resource that needs to be cleaned up. 1 method- Void Dispose();
+
+            using ()
+            {
+
+            }
+			
+			use this instead of a try/finally

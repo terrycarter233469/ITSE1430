@@ -22,10 +22,6 @@ namespace Nile.Stores
             else if (newProduct.Id >= _nextId)
                 _nextId = newProduct.Id + 1;
 
-            //temp crash
-            if (_nextId % 2 == 0)
-                throw new InvalidOperationException("Id invalid");
-
             return CopyProduct(newProduct);
         }
 
