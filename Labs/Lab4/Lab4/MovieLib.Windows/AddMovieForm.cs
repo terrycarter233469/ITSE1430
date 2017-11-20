@@ -27,11 +27,6 @@ namespace MovieLib.Windows
             Text = title;
         }
 
-        public AddMovieForm(string title, Movie movie) : this()
-        {
-            Movie = movie;
-        } 
-
         public Movie Movie {get; set;}
 
         protected override void OnLoad(EventArgs e)
@@ -62,6 +57,7 @@ namespace MovieLib.Windows
             }
             var movie = new Movie
             {
+                ID = Movie?.ID ?? 0,
                 Title = _txtTitle.Text,
                 Description = _txtDescription.Text,
                 Length = GetLength(_txtLength),

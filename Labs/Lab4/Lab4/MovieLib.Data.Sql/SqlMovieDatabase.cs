@@ -158,7 +158,7 @@ namespace MovieLib.Data.Sql
         {
             using(var conn = OpenDatabase())
             {
-                var cmd = new SqlCommand("UpdateProduct", conn) { CommandType = CommandType.StoredProcedure };
+                var cmd = new SqlCommand("UpdateMovie", conn) { CommandType = CommandType.StoredProcedure };
                 cmd.Parameters.AddWithValue("@id", existing.ID);
                 cmd.Parameters.AddWithValue("@title", newMovie.Title);
                 cmd.Parameters.AddWithValue("@description", newMovie.Description);
