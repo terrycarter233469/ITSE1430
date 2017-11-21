@@ -1,0 +1,16 @@
+Datasets vs Datareader
+
+Datasets:
+all data/schema is returned.
+Very expensive, slow.
+Large Memory overhead dont use this if loading more than 1000 rows
+All operations are defined
+Designed for batch operations
+built in
+
+Datareader:
+No schema information
+Fast, inexpensive.
+Read Only, cannot modify data inherently
+Can stop the reading of data.
+Not for designers/ui.
