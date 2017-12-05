@@ -27,7 +27,7 @@ namespace Nile.Web.Models
         /// </summary>
         /// <param name="source"></param>
         /// <returns>The product</returns>
-        public static Product ToDomain( this Product source )
+        public static Product ToDomain( this ProductViewModel source )
         {
             return new Product() {
                 Id = source.Id,
@@ -47,7 +47,7 @@ namespace Nile.Web.Models
                 select item.ToModel();
 
             //foreach (var item in source)
-            //yield return ote,.ToModel();
+            //yield return item.ToModel();
         }
     }
 }

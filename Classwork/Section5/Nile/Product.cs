@@ -37,10 +37,13 @@ namespace Nile
         //    get => 0M;
         //}
 
+       
         //Getter only property
+        [Obsolete("Deprecated in v1. Use something else.")]
         public decimal CalculatedProperty => 0M;
 
         //Field, oops
+        [Obsolete("Deprecated in v1. Use something else.")]
         public decimal CalculatedProperty2 = 0M;
 
         /// <summary>Gets or sets the price.</summary>
